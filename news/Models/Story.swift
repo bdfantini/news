@@ -8,9 +8,45 @@
 
 import Alamofire
 import Foundation
+import RealmSwift
 import SwiftyJSON
 
-class Story {
+class Story: Object {
+
+    // MARK: Properties
+    dynamic var objectId: Int64 = 0
+    dynamic var title: String?
+    dynamic var author: String?
+    dynamic var createdAt: Date?
+    
+    // MARK: Object overrides
+    override static func primaryKey() -> String? {
+        return "objectId"
+    }
+    
+    // MARK: Initialization
+
+    // MARK: Creation
+    public static func createAndSave(withJsonArray jsonArray:[JSON]) {
+        let realm = try! Realm()
+        
+        jsonArray.forEach { json in
+            
+            if let objectIdString = json["objectID"].string,
+                let objectId = Int64(objectIdString) {
+                
+                let story = Story()
+                story.objectId = objectId
+                story.title = json["story_title"].string
+                story.author = json["author"].string
+                
+                // TODO: BF: Add createdAt
+                try! realm.write {
+                    realm.add(story, update: true)
+                }
+            }
+        }
+    }
     
 }
 
@@ -27,10 +63,21 @@ extension Story {
         request.responseJSON { response in
             switch response.result {
             case .success(let value):
+                // Create a json object with the result
                 let json = JSON(value)
-                completionHandler(true, nil)
+                
+                // Create and save every object retrieved from the api
+                if let hitsJson = json["hits"].array {
+                    createAndSave(withJsonArray: hitsJson)
+                    
+                    // Callback with suceed value
+                    completionHandler(true, nil)
+                } else {
+                    // TODO: BF: Add error handling
+                }
                 
             case .failure(let error):
+                // Callback with failure value
                 completionHandler(false, error)
             }
         }
