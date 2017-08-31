@@ -13,7 +13,9 @@ class newsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        // Setup networking using api config shared instance
+        ApiConfig.setup(baseUrlString: "https://hn.algolia.com/api/v1/")
     }
     
     override func tearDown() {
@@ -21,16 +23,17 @@ class newsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testStoriesEndPoint() {
+        let promise = expectation(description: "Story list reachable")
+
+        Story.getStories { succeed, error in
+            if succeed {
+                promise.fulfill()
+            }
         }
+        
+        waitForExpectations(timeout: 5,
+                            handler: nil)
     }
     
 }

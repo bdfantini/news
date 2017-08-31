@@ -63,9 +63,9 @@ public class ApiConfig: NSObject {
 
      Example
 
-     ApiConfig.sharedInstance.buildURL(relativePath: "events")
+     ApiConfig.sharedInstance.buildUrl(relativePath: "events")
      */
-    public func buildURL(relativePath: String) -> URL {
+    public func buildUrl(relativePath: String) -> URL {
         return self.baseUrl.appendingPathComponent(relativePath)
     }
 
