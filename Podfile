@@ -7,7 +7,7 @@ target 'news' do
 
   # Pods for news
   pod 'Alamofire', '~> 4.5'
-  pod 'Realm', '~> 2.10'
+  pod 'RealmSwift', '~> 2.10'
   pod 'SwiftyJSON', '~> 3.1'
 
 end
