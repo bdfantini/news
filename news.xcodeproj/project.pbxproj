@@ -10,7 +10,7 @@
 		2025882B1F57929000307B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025882A1F57929000307B76 /* AppDelegate.swift */; };
 		202588321F57929000307B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202588311F57929000307B76 /* Assets.xcassets */; };
 		202588351F57929000307B76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202588331F57929000307B76 /* LaunchScreen.storyboard */; };
-		202588401F57929000307B76 /* newsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025883F1F57929000307B76 /* newsTests.swift */; };
+		202588401F57929000307B76 /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025883F1F57929000307B76 /* NewsTests.swift */; };
 		2025884D1F5793CA00307B76 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025884B1F5793CA00307B76 /* StoriesViewController.swift */; };
 		2025884E1F5793CA00307B76 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2025884C1F5793CA00307B76 /* StoriesViewController.xib */; };
 		20C8C1FE1F57A10900610D0C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8C1FD1F57A10900610D0C /* Story.swift */; };
@@ -35,7 +35,7 @@
 		202588341F57929000307B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		202588361F57929000307B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2025883B1F57929000307B76 /* newsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = newsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2025883F1F57929000307B76 /* newsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsTests.swift; sourceTree = "<group>"; };
+		2025883F1F57929000307B76 /* NewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
 		202588411F57929000307B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2025884B1F5793CA00307B76 /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoriesViewController.swift; path = Controllers/StoriesViewController.swift; sourceTree = "<group>"; };
 		2025884C1F5793CA00307B76 /* StoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoriesViewController.xib; path = Controllers/StoriesViewController.xib; sourceTree = "<group>"; };
@@ -68,8 +68,8 @@
 		2025881E1F57928F00307B76 = {
 			isa = PBXGroup;
 			children = (
-				202588291F57929000307B76 /* news */,
-				2025883E1F57929000307B76 /* newsTests */,
+				202588291F57929000307B76 /* News */,
+				2025883E1F57929000307B76 /* NewsTests */,
 				202588281F57929000307B76 /* Products */,
 				88DFF183EF17585465030234 /* Pods */,
 				263A4596324D42DFA07DB9DA /* Frameworks */,
@@ -85,7 +85,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		202588291F57929000307B76 /* news */ = {
+		202588291F57929000307B76 /* News */ = {
 			isa = PBXGroup;
 			children = (
 				2025884A1F57939D00307B76 /* Controllers */,
@@ -96,15 +96,17 @@
 				202588331F57929000307B76 /* LaunchScreen.storyboard */,
 				202588361F57929000307B76 /* Info.plist */,
 			);
+			name = News;
 			path = news;
 			sourceTree = "<group>";
 		};
-		2025883E1F57929000307B76 /* newsTests */ = {
+		2025883E1F57929000307B76 /* NewsTests */ = {
 			isa = PBXGroup;
 			children = (
-				2025883F1F57929000307B76 /* newsTests.swift */,
+				2025883F1F57929000307B76 /* NewsTests.swift */,
 				202588411F57929000307B76 /* Info.plist */,
 			);
+			name = NewsTests;
 			path = newsTests;
 			sourceTree = "<group>";
 		};
@@ -329,7 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				202588401F57929000307B76 /* newsTests.swift in Sources */,
+				202588401F57929000307B76 /* NewsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

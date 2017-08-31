@@ -1,6 +1,6 @@
 //
-//  newsTests.swift
-//  newsTests
+//  NewsTests.swift
+//  NewsTests
 //
 //  Created by Benjamin Fantini on 8/30/17.
 //  Copyright © 2017 Benjamin Fantini. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import news
 
-class newsTests: XCTestCase {
+class NewsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
