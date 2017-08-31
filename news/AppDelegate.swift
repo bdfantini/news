@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
         
+        // Setup networking using api config shared instance
+        ApiConfig.setup(baseUrlString: "https://hn.algolia.com/api/v1/")
+
         return true
     }
 
