@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Create the root window
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // Set the root view controller from it's default nib
+        let rootController = StoriesViewController(defaultNib: true)
+        let navController = UINavigationController(rootViewController: rootController)
+        
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
