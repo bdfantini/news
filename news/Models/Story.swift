@@ -24,37 +24,43 @@ class Story: Object {
         return "objectId"
     }
     
-    // MARK: Initialization
-
     // MARK: Creation
-    public static func createAndSave(withJsonArray jsonArray:[JSON]) {
+    static func create(with json: JSON) -> Story? {
+        if let objectIdString = json["objectID"].string,
+            let objectId = Int64(objectIdString) {
+            
+            let story = Story()
+            story.objectId = objectId
+            story.title = json["story_title"].string
+            story.author = json["author"].string
+            
+            if let createdAtDouble = json["created_at_i"].double {
+                story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
+            }
+
+            return story
+        } else {
+            return nil
+        }
+    }
+
+    static func createAndSave(withJsonArray jsonArray:[JSON]) {
         let realm = try! Realm()
         
         jsonArray.forEach { json in
             
-            if let objectIdString = json["objectID"].string,
-                let objectId = Int64(objectIdString) {
-                
-                let story = Story()
-                story.objectId = objectId
-                story.title = json["story_title"].string
-                story.author = json["author"].string
-                
-                if let createdAtDouble = json["created_at_i"].double {
-                    story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
-                }
-                
-                // TODO: BF: Add createdAt
+            if let story = Story.create(with: json) {
                 try! realm.write {
                     realm.add(story, update: true)
                 }
             }
+            
         }
     }
     
 }
 
-// MARK: Api
+// MARK:- API
 extension Story {
     
     public static func getStories(completionHandler: @escaping (Bool, Error?) -> Void) {
