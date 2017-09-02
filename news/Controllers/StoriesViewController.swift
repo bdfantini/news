@@ -15,7 +15,7 @@ class StoriesViewController: UIViewController {
     
     let reuseIdentifier = "tableViewReuseIdentifier"
     
-    // MARK: Outlets
+    // MARK: UI
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,19 +55,20 @@ class StoriesViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.register(nib,
                                 forCellReuseIdentifier: reuseIdentifier)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = .lightGray
+        refreshControl.tintColor = .darkGray
+        refreshControl.addTarget(self,
+                                 action: #selector(StoriesViewController.getData),
+                                 for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Story.getStories { succeed, error in
-            self.reloadData()
-            
-            if let error = error {
-                print(error)
-                //TODO: BF: Show something?
-            }
-        }
+        self.getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +87,18 @@ class StoriesViewController: UIViewController {
     }
     
     // MARK: Protected Functions
+    func getData() {
+        Story.getStories { succeed, error in
+            self.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+            
+            if let error = error {
+                print(error)
+                //TODO: BF: Show something?
+            }
+        }
+    }
+    
     func reloadData() {
         do {
             let realm = try Realm()
