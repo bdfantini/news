@@ -92,7 +92,7 @@ class StoriesViewController: UIViewController {
             
             let result = realm.objects(Story.self)
                 .filter("isDeleted = false")
-                .sorted(byKeyPath: "createdAt")
+                .sorted(byKeyPath: "createdAt", ascending: false)
             
             self.storyArray = Array(result)
         } catch let error as NSError {

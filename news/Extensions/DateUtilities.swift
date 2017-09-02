@@ -40,9 +40,9 @@ extension Date {
             }
 
         } else if let hour = dateComponents.hour, hour > 0 {
-            return String(hour) + "h"
-        } else if let minutes = dateComponents.hour, minutes > 0 {
-            return String(minutes) + "m"
+            return "\(hour)h"
+        } else if let minute = dateComponents.minute, minute > 0 {
+            return "\(minute)m"
         } else if let second = dateComponents.second, second > 0 {
             return "now"
         }
