@@ -55,8 +55,19 @@ class StoriesViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.register(nib,
                                 forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        self.reloadData()
+        Story.getStories { succeed, error in
+            self.reloadData()
+            
+            if let error = error {
+                print(error)
+                //TODO: BF: Show something?
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
