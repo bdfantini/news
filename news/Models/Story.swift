@@ -40,6 +40,10 @@ class Story: Object {
                 story.title = json["story_title"].string
                 story.author = json["author"].string
                 
+                if let createdAtDouble = json["created_at_i"].double {
+                    story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
+                }
+                
                 // TODO: BF: Add createdAt
                 try! realm.write {
                     realm.add(story, update: true)
