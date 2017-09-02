@@ -85,8 +85,8 @@ class StoriesViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    // MARK: Private Functions
-    private func reloadData() {
+    // MARK: Protected Functions
+    func reloadData() {
         do {
             let realm = try Realm()
             
@@ -96,6 +96,7 @@ class StoriesViewController: UIViewController {
             
             self.storyArray = Array(result)
         } catch let error as NSError {
+            // TODO: BF: Do something
             print(error)
         }
     }
@@ -127,7 +128,39 @@ extension StoriesViewController: UITableViewDataSource {
 
 extension StoriesViewController: UITableViewDelegate {
 
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView,
+                          canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    public func tableView(_ tableView: UITableView,
+                          commit editingStyle: UITableViewCellEditingStyle,
+                          forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            do {
+                let story = self.storyArray[indexPath.row]
+                
+                let realm = try Realm()
+                try realm.write {
+                    story.isDeleted = true
+                }
+                
+                tableView.beginUpdates()
+                self.storyArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+                
+            } catch let error as NSError {
+                // TODO: BF: Do something
+                print(error)
+            }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView,
+                          didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }

@@ -60,6 +60,7 @@ class Story: Object {
                 
             }
         } catch let error as NSError {
+            // TODO: BF: Do something
             print(error)
         }
     }
