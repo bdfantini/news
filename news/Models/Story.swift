@@ -28,8 +28,7 @@ class Story: Object {
     // MARK: Creation
     static func create(with json: JSON) -> Story? {
         
-        if let objectIdString = json["objectID"].string,
-            let objectId = Int64(objectIdString),
+        if let objectId = json["story_id"].int64,
             let title = json["story_title"].string,
             let author = json["author"].string,
             let createdAtDouble = json["created_at_i"].double {
