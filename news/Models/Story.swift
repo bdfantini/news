@@ -51,12 +51,14 @@ class Story: Object {
             
             try jsonArray.forEach { json in
                 
-                if let story = Story.create(with: json) {
+                if let objectId = json["story_id"].int64,
+                    realm.object(ofType: Story.self, forPrimaryKey: objectId) == nil,
+                    let story = Story.create(with: json) {
+                    
                     try realm.write {
-                        realm.add(story, update: true)
+                        realm.add(story)
                     }
                 }
-                
             }
         } catch let error as NSError {
             // TODO: BF: Do something
