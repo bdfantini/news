@@ -45,6 +45,10 @@
                     <constraint firstAttribute="leadingMargin" secondItem="cHw-uy-BZ2" secondAttribute="leading" id="q3h-KE-bzb"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="subtitleLabel" destination="aTF-RQ-HrS" id="oGI-Uc-pYc"/>
+                <outlet property="titleLabel" destination="cHw-uy-BZ2" id="vPv-pE-u0X"/>
+            </connections>
             <point key="canvasLocation" x="34" y="78"/>
         </tableViewCell>
     </objects>

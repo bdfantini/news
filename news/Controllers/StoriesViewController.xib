@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoriesViewController" customModule="news" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="CmQ-8a-orz" id="NNd-RC-72Y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +19,24 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CmQ-8a-orz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="zPe-4X-RRG"/>
+                        <outlet property="delegate" destination="-1" id="Ne3-Bp-rCD"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="CmQ-8a-orz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="70M-3k-hea"/>
+                <constraint firstAttribute="trailing" secondItem="CmQ-8a-orz" secondAttribute="trailing" id="EwC-VC-khZ"/>
+                <constraint firstAttribute="bottom" secondItem="CmQ-8a-orz" secondAttribute="bottom" id="HXa-HJ-GPU"/>
+                <constraint firstItem="CmQ-8a-orz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="In6-Oz-VhY"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
 </document>

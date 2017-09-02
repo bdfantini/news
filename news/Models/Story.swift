@@ -15,9 +15,10 @@ class Story: Object {
 
     // MARK: Properties
     dynamic var objectId: Int64 = 0
-    dynamic var title: String?
-    dynamic var author: String?
-    dynamic var createdAt: Date?
+    dynamic var title: String = ""
+    dynamic var author: String = ""
+    dynamic var createdAt: Date = Date()
+    dynamic var isDeleted: Bool = false
     
     // MARK: Object overrides
     override static func primaryKey() -> String? {
@@ -26,17 +27,18 @@ class Story: Object {
     
     // MARK: Creation
     static func create(with json: JSON) -> Story? {
+        
         if let objectIdString = json["objectID"].string,
-            let objectId = Int64(objectIdString) {
+            let objectId = Int64(objectIdString),
+            let title = json["story_title"].string,
+            let author = json["author"].string,
+            let createdAtDouble = json["created_at_i"].double {
             
             let story = Story()
             story.objectId = objectId
-            story.title = json["story_title"].string
-            story.author = json["author"].string
-            
-            if let createdAtDouble = json["created_at_i"].double {
-                story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
-            }
+            story.title = title
+            story.author = author
+            story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
 
             return story
         } else {
@@ -45,16 +47,20 @@ class Story: Object {
     }
 
     static func createAndSave(withJsonArray jsonArray:[JSON]) {
-        let realm = try! Realm()
-        
-        jsonArray.forEach { json in
+        do {
+            let realm = try Realm()
             
-            if let story = Story.create(with: json) {
-                try! realm.write {
-                    realm.add(story, update: true)
+            try jsonArray.forEach { json in
+                
+                if let story = Story.create(with: json) {
+                    try realm.write {
+                        realm.add(story, update: true)
+                    }
                 }
+                
             }
-            
+        } catch let error as NSError {
+            print(error)
         }
     }
     

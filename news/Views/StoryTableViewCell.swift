@@ -37,10 +37,7 @@ class StoryTableViewCell: UITableViewCell {
     private func updateView() {
         if let story = self.story {
             self.titleLabel.text = story.title
-            
-            if let author = story.author, let createdAt = story.createdAt {
-                self.subtitleLabel.text = "\(author) - \(createdAt.prettyTimeAgo())"
-            }
+            self.subtitleLabel.text = "\(story.author) - \(story.createdAt.prettyTimeAgo())"
         }
     }
 }

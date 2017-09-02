@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup networking using api config shared instance
         ApiConfig.setup(baseUrlString: "https://hn.algolia.com/api/v1/")
-        Story.getStories { succeed, error in
-        }
 
         return true
     }
