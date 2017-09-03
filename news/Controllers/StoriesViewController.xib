@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoriesViewController" customModule="news" customModuleProvider="target">
             <connections>
+                <outlet property="messageLabel" destination="tjC-Hu-LsW" id="d2j-tY-ZAm"/>
                 <outlet property="tableView" destination="CmQ-8a-orz" id="NNd-RC-72Y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -38,5 +39,13 @@
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data is currently available." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tjC-Hu-LsW">
+            <rect key="frame" x="0.0" y="0.0" width="278" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="-414" y="4"/>
+        </label>
     </objects>
 </document>

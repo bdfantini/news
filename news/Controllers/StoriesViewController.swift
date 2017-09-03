@@ -18,6 +18,7 @@ class StoriesViewController: UIViewController {
     // MARK: UI
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Attributes
     
@@ -63,6 +64,10 @@ class StoriesViewController: UIViewController {
                                  action: #selector(StoriesViewController.getData),
                                  for: .valueChanged)
         self.tableView.refreshControl = refreshControl
+        
+        self.tableView.backgroundView = self.messageLabel
+        
+        self.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,7 +126,13 @@ extension StoriesViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView,
                           numberOfRowsInSection section: Int) -> Int {
-        return self.storyArray.count
+        
+        let count = self.storyArray.count
+        
+        tableView.separatorStyle = count > 0 ? .singleLine : .none
+        tableView.backgroundView?.isHidden = (count > 0)
+        
+        return count
     }
     
     public func tableView(_ tableView: UITableView,
