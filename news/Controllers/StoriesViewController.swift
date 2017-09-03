@@ -6,6 +6,7 @@
 //  Copyright © 2017 Benjamin Fantini. All rights reserved.
 //
 
+import NVActivityIndicatorView
 import RealmSwift
 import UIKit
 
@@ -78,13 +79,17 @@ class StoriesViewController: DefaultViewController {
     // MARK: Internal Functions
     func getData() {
         // Get stories from the api, then reload table's data from local database
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
         Story.getStories { succeed, error in
             self.reloadData()
             self.tableView.refreshControl?.endRefreshing()
             
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            
             if let error = error {
-                print(error)
-                //TODO: BF: Show something?
+                self.showErrorAlert(message: error.localizedDescription)
             }
         }
     }
@@ -100,8 +105,7 @@ class StoriesViewController: DefaultViewController {
             
             self.storyArray = Array(result)
         } catch let error as NSError {
-            // TODO: BF: Do something
-            print(error)
+            self.showErrorAlert(message: error.localizedDescription)
         }
     }
 }
@@ -166,8 +170,7 @@ extension StoriesViewController: UITableViewDelegate {
                 tableView.endUpdates()
                 
             } catch let error as NSError {
-                // TODO: BF: Do something
-                print(error)
+                self.showErrorAlert(message: error.localizedDescription)
             }
         }
     }

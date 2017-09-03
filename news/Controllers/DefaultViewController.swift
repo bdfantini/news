@@ -6,9 +6,10 @@
 //  Copyright © 2017 Benjamin Fantini. All rights reserved.
 //
 
+import NVActivityIndicatorView
 import UIKit
 
-class DefaultViewController: UIViewController {
+class DefaultViewController: UIViewController, NVActivityIndicatorViewable {
 
     // MARK: Initialization
     
