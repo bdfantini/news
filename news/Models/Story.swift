@@ -17,6 +17,7 @@ class Story: Object {
     dynamic var objectId: Int64 = 0
     dynamic var title: String = ""
     dynamic var author: String = ""
+    dynamic var urlString: String = ""
     dynamic var createdAt: Date = Date()
     dynamic var isDeleted: Bool = false
     
@@ -31,12 +32,14 @@ class Story: Object {
         if let objectId = json["story_id"].int64,
             let title = json["story_title"].string,
             let author = json["author"].string,
+            let urlString = json["story_url"].string,
             let createdAtDouble = json["created_at_i"].double {
             
             let story = Story()
             story.objectId = objectId
             story.title = title
             story.author = author
+            story.urlString = urlString
             story.createdAt = Date(timeIntervalSince1970: createdAtDouble)
 
             return story

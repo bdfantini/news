@@ -9,7 +9,7 @@
 import RealmSwift
 import UIKit
 
-class StoriesViewController: UIViewController {
+class StoriesViewController: DefaultViewController {
 
     // MARK: Constants
     
@@ -25,21 +25,6 @@ class StoriesViewController: UIViewController {
     var storyArray = [Story]() {
         didSet {
             self.tableView.reloadData()
-        }
-    }
-    
-    // MARK: Initialization
-    
-    convenience init(defaultNib: Bool = false) {
-        // Initialize the view controller using the xib file with the same
-        // filename
-        if defaultNib {
-            let nibName = String(describing: type(of: self))
-            
-            self.init(nibName: nibName,
-                      bundle: Bundle.main)
-        } else {
-            self.init()
         }
     }
     
@@ -184,6 +169,14 @@ extension StoriesViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView,
                           didSelectRowAt indexPath: IndexPath) {
+        let webViewController = WebViewController()
+        
+        let story = self.storyArray[indexPath.row]
+        webViewController.urlString = story.urlString
+        
+        self.navigationController?.pushViewController(webViewController,
+                                                      animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

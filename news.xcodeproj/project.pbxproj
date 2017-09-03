@@ -16,6 +16,8 @@
 		208E8C5F1F5B3535008FE5D2 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E8C5D1F5B3535008FE5D2 /* StoryTableViewCell.swift */; };
 		208E8C601F5B3535008FE5D2 /* StoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208E8C5E1F5B3535008FE5D2 /* StoryTableViewCell.xib */; };
 		208E8C631F5B38DB008FE5D2 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E8C621F5B38DB008FE5D2 /* DateUtilities.swift */; };
+		20A793C61F5B8149009DDF98 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A793C41F5B8149009DDF98 /* WebViewController.swift */; };
+		20A793C91F5B82F1009DDF98 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A793C81F5B82F1009DDF98 /* DefaultViewController.swift */; };
 		20C8C1FE1F57A10900610D0C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8C1FD1F57A10900610D0C /* Story.swift */; };
 		20E430021F579B3D00FA3B06 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E430011F579B3D00FA3B06 /* ApiConfig.swift */; };
 		FECF009B49B1606C67523549 /* Pods_news.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842CC776C8DD1AA9F40515E2 /* Pods_news.framework */; };
@@ -45,6 +47,8 @@
 		208E8C5D1F5B3535008FE5D2 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryTableViewCell.swift; path = Views/StoryTableViewCell.swift; sourceTree = "<group>"; };
 		208E8C5E1F5B3535008FE5D2 /* StoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoryTableViewCell.xib; path = Views/StoryTableViewCell.xib; sourceTree = "<group>"; };
 		208E8C621F5B38DB008FE5D2 /* DateUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtilities.swift; path = Extensions/DateUtilities.swift; sourceTree = "<group>"; };
+		20A793C41F5B8149009DDF98 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = "<group>"; };
+		20A793C81F5B82F1009DDF98 /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultViewController.swift; path = Controllers/DefaultViewController.swift; sourceTree = "<group>"; };
 		20C8C1FD1F57A10900610D0C /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Story.swift; path = Models/Story.swift; sourceTree = "<group>"; };
 		20E430011F579B3D00FA3B06 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiConfig.swift; path = Networking/ApiConfig.swift; sourceTree = "<group>"; };
 		69C7DBB67D11B8AE70C02153 /* Pods-news.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news/Pods-news.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,8 +125,10 @@
 		2025884A1F57939D00307B76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				20A793C81F5B82F1009DDF98 /* DefaultViewController.swift */,
 				2025884B1F5793CA00307B76 /* StoriesViewController.swift */,
 				2025884C1F5793CA00307B76 /* StoriesViewController.xib */,
+				20A793C41F5B8149009DDF98 /* WebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -348,8 +354,10 @@
 			files = (
 				208E8C631F5B38DB008FE5D2 /* DateUtilities.swift in Sources */,
 				2025884D1F5793CA00307B76 /* StoriesViewController.swift in Sources */,
+				20A793C91F5B82F1009DDF98 /* DefaultViewController.swift in Sources */,
 				20C8C1FE1F57A10900610D0C /* Story.swift in Sources */,
 				2025882B1F57929000307B76 /* AppDelegate.swift in Sources */,
+				20A793C61F5B8149009DDF98 /* WebViewController.swift in Sources */,
 				20E430021F579B3D00FA3B06 /* ApiConfig.swift in Sources */,
 				208E8C5F1F5B3535008FE5D2 /* StoryTableViewCell.swift in Sources */,
 			);
