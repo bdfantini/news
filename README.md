@@ -22,4 +22,6 @@ Then open the project's generated workspace
 open news.xcworkspace
 ```
 
-Build & Run!
+To test this project on a simulator just build & run!
+
+If you want to test it on an iPhone, first add signing on the project's general tab, then build & run.
