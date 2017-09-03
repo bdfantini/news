@@ -12,6 +12,7 @@ extension Date {
     
     func prettyTimeAgo() -> String {
  
+        // Units for date comparison's components
         let componentUnitSet: Set<Calendar.Component> = [.year,
                                                          .month,
                                                          .day,
@@ -23,6 +24,8 @@ extension Date {
                                                              from: self,
                                                              to: Date())
         
+        // Custom string depending on the amount of time passed since the date
+        // until now
         if let year = dateComponents.year, year > 0 {
             
             if year > 1 {
@@ -51,6 +54,7 @@ extension Date {
     }
     
     func shortString() -> String {
+        // Short format eg: Sep 2
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d"
         

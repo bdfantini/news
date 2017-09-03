@@ -33,32 +33,30 @@ class StoriesViewController: DefaultViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // StoryTableViewCell's nib
         let nibName = String(describing: StoryTableViewCell.self)
         let bundle = Bundle(for: StoryTableViewCell.self)
         let nib = UINib(nibName: nibName, bundle: bundle)
         
+        // TableView customization
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 50
-        self.tableView.register(nib,
-                                forCellReuseIdentifier: reuseIdentifier)
+        self.tableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
         
+        // Add refresh control to the TableView
         let refreshControl = UIRefreshControl()
         refreshControl.backgroundColor = .lightGray
         refreshControl.tintColor = .darkGray
         refreshControl.addTarget(self,
-                                 action: #selector(StoriesViewController.getData),
+                                 action: #selector(getData),
                                  for: .valueChanged)
         self.tableView.refreshControl = refreshControl
         
+        // Add empty message at background view
         self.tableView.backgroundView = self.messageLabel
         
+        // Reload data from local database
         self.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +74,9 @@ class StoriesViewController: DefaultViewController {
         super.viewWillDisappear(animated)
     }
     
-    // MARK: Protected Functions
+    // MARK: Internal Functions
     func getData() {
+        // Get stories from the api, then reload table's data from local database
         Story.getStories { succeed, error in
             self.reloadData()
             self.tableView.refreshControl?.endRefreshing()
@@ -91,6 +90,7 @@ class StoriesViewController: DefaultViewController {
     
     func reloadData() {
         do {
+            // Load stories from local database
             let realm = try Realm()
             
             let result = realm.objects(Story.self)
@@ -114,6 +114,7 @@ extension StoriesViewController: UITableViewDataSource {
         
         let count = self.storyArray.count
         
+        // Show an empty message label is there isn't any data to show
         tableView.separatorStyle = count > 0 ? .singleLine : .none
         tableView.backgroundView?.isHidden = (count > 0)
         
@@ -126,6 +127,7 @@ extension StoriesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,
                                                  for: indexPath) as! StoryTableViewCell
         
+        // Configure the cell's story
         cell.story = self.storyArray[indexPath.row]
         
         return cell
@@ -150,11 +152,13 @@ extension StoriesViewController: UITableViewDelegate {
             do {
                 let story = self.storyArray[indexPath.row]
                 
+                // Set isDeleted = true for the selected story
                 let realm = try Realm()
                 try realm.write {
                     story.isDeleted = true
                 }
                 
+                // Remove the row (and item from the array) at indexPath
                 tableView.beginUpdates()
                 self.storyArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -171,6 +175,7 @@ extension StoriesViewController: UITableViewDelegate {
                           didSelectRowAt indexPath: IndexPath) {
         let webViewController = WebViewController()
         
+        // Set the WebViewController's url
         let story = self.storyArray[indexPath.row]
         webViewController.urlString = story.urlString
         

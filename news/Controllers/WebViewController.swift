@@ -24,19 +24,16 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set the WebView as the whole view
         self.view = self.webView
         
+        // Load the url on the WebView
         if let urlString = urlString,
             let url = URL(string: urlString) {
             
             let request = URLRequest(url: url)
             self.webView.load(request)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

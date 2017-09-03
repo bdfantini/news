@@ -21,20 +21,8 @@ class StoryTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: View Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    // MARK: Private funtions
-    private func updateView() {
+    // MARK: File Private funtions
+    fileprivate func updateView() {
         if let story = self.story {
             self.titleLabel.text = story.title
             self.subtitleLabel.text = "\(story.author) - \(story.createdAt.prettyTimeAgo())"
