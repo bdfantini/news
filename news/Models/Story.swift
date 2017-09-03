@@ -12,6 +12,15 @@ import RealmSwift
 import SwiftyJSON
 
 class Story: Object {
+    
+    fileprivate enum JsonKey: String {
+        case hits = "hits"
+        case storyId = "story_id"
+        case storyTitle = "story_title"
+        case author = "author"
+        case storyUrl = "story_url"
+        case createdAtI = "created_at_i"
+    }
 
     // MARK: Properties
     dynamic var objectId: Int64 = 0
@@ -29,11 +38,11 @@ class Story: Object {
     // MARK: Creation
     static func create(with json: JSON) -> Story? {
         
-        if let objectId = json["story_id"].int64,
-            let title = json["story_title"].string,
-            let author = json["author"].string,
-            let urlString = json["story_url"].string,
-            let createdAtDouble = json["created_at_i"].double {
+        if let objectId = json[JsonKey.storyId.rawValue].int64,
+            let title = json[JsonKey.storyTitle.rawValue].string,
+            let author = json[JsonKey.author.rawValue].string,
+            let urlString = json[JsonKey.storyUrl.rawValue].string,
+            let createdAtDouble = json[JsonKey.createdAtI.rawValue].double {
             
             let story = Story()
             story.objectId = objectId
@@ -54,7 +63,7 @@ class Story: Object {
             
             try jsonArray.forEach { json in
                 
-                if let objectId = json["story_id"].int64,
+                if let objectId = json[JsonKey.storyId.rawValue].int64,
                     realm.object(ofType: Story.self, forPrimaryKey: objectId) == nil,
                     let story = Story.create(with: json) {
                     
@@ -88,7 +97,7 @@ extension Story {
                 let json = JSON(value)
                 
                 // Create and save every object retrieved from the api
-                if let hitsJson = json["hits"].array {
+                if let hitsJson = json[JsonKey.hits.rawValue].array {
                     createAndSave(withJsonArray: hitsJson)
                     
                     // Callback with suceed value

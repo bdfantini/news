@@ -57,6 +57,7 @@ class StoriesViewController: DefaultViewController {
         
         // Reload data from local database
         self.reloadData()
+        self.getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
